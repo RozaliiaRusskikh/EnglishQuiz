@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EnglishQuiz</string>
+    <string name="question_text">The verb TO THINK is never used in continuous tenses</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="correct_toast">Correct</string>
+    <string name="incorrect_toast">Incorrect</string>
+    <string name="next_button">Next</string>
 </resources>

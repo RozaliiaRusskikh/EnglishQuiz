@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The verb TO THINK is never used in continuous tenses"
+        android:text="@string/question_text"
         android:padding="24dp"/>
 
     <LinearLayout
@@ -17,13 +17,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/true_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="true"/>
+            android:text="@string/true_button"/>
 
         <Button
+            android:id="@+id/false_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="false"/>
+            android:text="@string/false_button"/>
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button"/>
 </LinearLayout>
