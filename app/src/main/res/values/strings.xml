@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">EnglishQuiz</string>
-    <string name="question_text">The verb TO THINK is never used in continuous tenses</string>
+    <string name="question_about_verb_to_think">The verb "to think" can be used in continuous tenses</string>
+    <string name="question_about_used_to_do">"Used to doing" and "used to do" mean approximately the same thing</string>
+    <string name="question_about_phrasal_verb">Phrasal verbs always consist of two words</string>
+    <string name="question_about_must">The past tense of "must" is "musted"</string>
+    <string name="question_about_auxiliary_verb">Questions always use an auxiliary verb</string>
+    <string name="question_about_shortest_sentence">The shortest possible sentence contains a subject, a verb and an object</string>
+    <string name="question_about_verb_to_do">The auxiliary verb "to do" is never used in the present simple affirmative.</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="correct_toast">Correct</string>
