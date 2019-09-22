@@ -9,7 +9,7 @@
     <string name="question_about_verb_to_do">The auxiliary verb "to do" is never used in the present simple affirmative.</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
-    <string name="correct_toast">Correct</string>
-    <string name="incorrect_toast">Incorrect</string>
+    <string name="correct_toast">Correct!</string>
+    <string name="incorrect_toast">Incorrect!</string>
     <string name="next_button">Next</string>
 </resources>

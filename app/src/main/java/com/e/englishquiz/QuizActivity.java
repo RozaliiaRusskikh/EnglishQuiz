@@ -3,21 +3,24 @@ package com.e.englishquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
 
+    private static final String TAG = "QuizActivity";
+
+    // adding member variables and a Question array
     private Button mTrueButton;
     private Button mFalseButton;
     private TextView mQuestionTextView;
     private Button mNextButton;
-    private Question Questions[];
 
-    private Question [] mquestions = new Question[]{
+    private Question[] mQuestions = new Question[]{
             new Question(R.string.question_about_auxiliary_verb, false),
             new Question(R.string.question_about_must, false),
             new Question(R.string.question_about_phrasal_verb, false),
@@ -27,26 +30,86 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.question_about_verb_to_do, false)
     };
 
-    private  int currentIndex = 0;
+    private int currentIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
-        mTrueButton = (Button) findViewById(R.id.true_button);
-        mTrueButton.setOnClickListener(new View.OnClickListener() {
+
+        mQuestionTextView = (TextView) findViewById(R.id.question_text_view); // getting references to widget
+
+        mTrueButton = (Button) findViewById(R.id.true_button); // getting references to widget
+        mTrueButton.setOnClickListener(new View.OnClickListener() { // setting listener
             @Override
             public void onClick(View view) {
-                Toast.makeText(QuizActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
+                checkAnswer(true);
             }
         });
 
-        mFalseButton = (Button) findViewById(R.id.false_button);
-        mFalseButton.setOnClickListener(new View.OnClickListener() {
+        mFalseButton = (Button) findViewById(R.id.false_button); // getting references to widget
+        mFalseButton.setOnClickListener(new View.OnClickListener() {  // setting listener
             @Override
             public void onClick(View view) {
-                Toast.makeText(QuizActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+                checkAnswer(false);
             }
         });
+
+        mNextButton = (Button) findViewById(R.id.next_button); // getting references to widget
+        mNextButton.setOnClickListener(new View.OnClickListener() {  // setting listener
+            @Override
+            public void onClick(View view) {
+                currentIndex++; // incrementing the index
+                updateQuestion();
+            }
+        });
+        updateQuestion();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop called()");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
+
+    private void updateQuestion() { // updating TextView's text
+        int question = mQuestions[currentIndex].getQuestionTextId();
+        mQuestionTextView.setText(question);
+    }
+
+    private void checkAnswer(boolean userPressedTrue) {
+        boolean answerTrue = mQuestions[currentIndex].isAnswerTrue();
+        int messageResultID = 0;
+        if (userPressedTrue == answerTrue) {
+            messageResultID = R.string.correct_toast;
+        } else {
+            messageResultID = R.string.incorrect_toast;
+        }
+        Toast.makeText(this, messageResultID, Toast.LENGTH_SHORT).show(); //making toast
     }
 }
