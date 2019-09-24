@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class QuizActivity extends AppCompatActivity {
     };
 
     private int mCurrentIndex = 0;
+    private int mCorrectAnswerAmount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class QuizActivity extends AppCompatActivity {
                 mCurrentIndex++; // incrementing the index
                 updateQuestion();
                 int lastIndex = mQuestions.length - 1;
-                if (mCurrentIndex == lastIndex) {
+                if (mCurrentIndex == lastIndex) { // disabling the Next button when there is no next question
                     mNextButton.setEnabled(false);
                 }
             }
@@ -125,12 +127,23 @@ public class QuizActivity extends AppCompatActivity {
 
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerTrue = mQuestions[mCurrentIndex].isAnswerTrue();
-        int messageResultID = 0;
+        String messageResult;
         if (userPressedTrue == answerTrue) {
-            messageResultID = R.string.correct_toast;
+            messageResult = this.getResources().getString(R.string.correct_toast);
+            mCorrectAnswerAmount++;
         } else {
-            messageResultID = R.string.incorrect_toast;
+            messageResult = this.getResources().getString(R.string.incorrect_toast);
         }
-        Toast.makeText(this, messageResultID, Toast.LENGTH_SHORT).show(); //making toast
+
+        int questionsAmount = mQuestions.length;
+        int lastIndex = questionsAmount - 1;
+        if (mCurrentIndex == lastIndex) {
+            double percentageScore = (mCorrectAnswerAmount / (double) questionsAmount) * 100;
+            String percentageScoreString = new DecimalFormat("#0.00").format(percentageScore);
+
+            messageResult = messageResult + "\n" + "Percentage of correct answers is " + percentageScoreString; // displaying text for Toast with a percentage correct score
+        }
+
+        Toast.makeText(this, messageResult, Toast.LENGTH_SHORT).show(); //making toast
     }
 }
