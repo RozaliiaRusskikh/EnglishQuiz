@@ -49,7 +49,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(true);
-                mTrueButton.setEnabled(false);
+                mTrueButton.setEnabled(false); // disabling the buttons to prevent multiple answers being entered
                 mFalseButton.setEnabled(false);
             }
         });
@@ -59,7 +59,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(false);
-                mTrueButton.setEnabled(false);
+                mTrueButton.setEnabled(false); // disabling the buttons to prevent multiple answers being entered
                 mFalseButton.setEnabled(false);
             }
         });
@@ -72,6 +72,10 @@ public class QuizActivity extends AppCompatActivity {
                 mFalseButton.setEnabled(true);
                 mCurrentIndex++; // incrementing the index
                 updateQuestion();
+                int lastIndex = mQuestions.length - 1;
+                if (mCurrentIndex == lastIndex) {
+                    mNextButton.setEnabled(false);
+                }
             }
         });
         updateQuestion();
