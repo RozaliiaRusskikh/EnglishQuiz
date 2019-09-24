@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class QuizActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
-    private static final String KEY_INDEX = "index";
+    private static final String KEY_INDEX = "index"; // key for bundle
 
     // adding member variables and a Question array
     private Button mTrueButton;
@@ -38,7 +38,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null) { // reading saving data in SaveInstantState back
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
 
@@ -49,6 +49,8 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(true);
+                mTrueButton.setEnabled(false);
+                mFalseButton.setEnabled(false);
             }
         });
 
@@ -57,6 +59,8 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(false);
+                mTrueButton.setEnabled(false);
+                mFalseButton.setEnabled(false);
             }
         });
 
@@ -64,6 +68,8 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {  // setting listener
             @Override
             public void onClick(View view) {
+                mTrueButton.setEnabled(true);
+                mFalseButton.setEnabled(true);
                 mCurrentIndex++; // incrementing the index
                 updateQuestion();
             }
@@ -90,7 +96,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState) { // saving data across rotation
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
