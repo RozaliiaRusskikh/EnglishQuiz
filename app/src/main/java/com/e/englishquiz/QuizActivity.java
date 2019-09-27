@@ -2,6 +2,7 @@ package com.e.englishquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mFalseButton;
     private TextView mQuestionTextView;
     private Button mNextButton;
+    private Button mCheatButton;
 
     private Question[] mQuestions = new Question[]{
             new Question(R.string.question_about_auxiliary_verb, false),
@@ -78,6 +80,15 @@ public class QuizActivity extends AppCompatActivity {
                 if (mCurrentIndex == lastIndex) { // disabling the Next button when there is no next question
                     mNextButton.setEnabled(false);
                 }
+            }
+        });
+
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+               startActivity(intent);
             }
         });
         updateQuestion();
