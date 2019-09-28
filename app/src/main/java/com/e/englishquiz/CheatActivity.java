@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class CheatActivity extends AppCompatActivity {
 
     private static final String EXTRA_ANSWER_IS_TRUE = "com.e.englishquiz.answer_is_true"; //adding an extra constant
+    private static final String EXTRA_ANSWER_SHOWN = "com.e.englishquiz.answer_shown"; // constant for the extra's key
 
     private Button mShowAnswerButton;
     private TextView mAnswerTextView;
@@ -23,6 +24,10 @@ public class CheatActivity extends AppCompatActivity {
         Intent intent = new Intent(packageContext, CheatActivity.class);
         intent.putExtra(EXTRA_ANSWER_IS_TRUE, isAnswerTrue);
         return intent;
+    }
+
+    public static boolean wasAnswerShown(Intent result) { // decoding the extra
+        return result.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
     }
 
     @Override
@@ -40,7 +45,14 @@ public class CheatActivity extends AppCompatActivity {
             public void onClick(View v) { //enable cheating: show answer
                 String answer = String.valueOf(mAnswerIsTrue);
                 mAnswerTextView.setText(answer);
+                setAnswerShownResult(true);
             }
         });
+    }
+
+    private void setAnswerShownResult(boolean isAnswerShown) { // sending back an intent
+        Intent data = new Intent(); // creating an intent instance
+        data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown); // putting an extra on intent
+        setResult(RESULT_OK, data); // setting a result (sending data back to the parent)
     }
 }

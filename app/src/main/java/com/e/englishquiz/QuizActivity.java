@@ -1,7 +1,9 @@
 package com.e.englishquiz;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index"; // key for bundle
+    private static final int REQUEST_CODE_CHEAT = 0; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
 
     // adding member variables and a Question array
     private Button mTrueButton;
@@ -36,6 +39,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private int mCurrentIndex = 0;
     private int mCorrectAnswerAmount = 0;
+    private boolean mIsCheater; // adding a member variable to hold the value that CheatActivity is passing back
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,7 @@ public class QuizActivity extends AppCompatActivity {
                 mTrueButton.setEnabled(true);
                 mFalseButton.setEnabled(true);
                 mCurrentIndex++; // incrementing the index
+                mIsCheater = false;
                 updateQuestion();
                 int lastIndex = mQuestions.length - 1;
                 if (mCurrentIndex == lastIndex) { // disabling the Next button when there is no next question
@@ -89,10 +94,24 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean answerIsTrue = mQuestions[mCurrentIndex].isAnswerTrue();
                 Intent intent = CheatActivity.newIntent(QuizActivity.this, answerIsTrue);
-                startActivity(intent); //starting CheatActivity
+                startActivityForResult(intent, REQUEST_CODE_CHEAT); //starting CheatActivity and hearing back from the child activity
             }
         });
         updateQuestion();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) { // retrieving value that CheatActivity passing back
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == REQUEST_CODE_CHEAT) {
+            if (data == null) {
+                return;
+            }
+            mIsCheater = CheatActivity.wasAnswerShown(data);
+        }
     }
 
     @Override
@@ -139,12 +158,16 @@ public class QuizActivity extends AppCompatActivity {
 
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerTrue = mQuestions[mCurrentIndex].isAnswerTrue();
-        String messageResult;
-        if (userPressedTrue == answerTrue) {
-            messageResult = this.getResources().getString(R.string.correct_toast);
-            mCorrectAnswerAmount++;
+        String messageResult = null;
+        if (mIsCheater) {
+            messageResult = this.getResources().getString(R.string.juidgment_toast);
         } else {
-            messageResult = this.getResources().getString(R.string.incorrect_toast);
+            if (userPressedTrue == answerTrue) {
+                messageResult = this.getResources().getString(R.string.correct_toast);
+                mCorrectAnswerAmount++;
+            } else {
+                messageResult = this.getResources().getString(R.string.incorrect_toast);
+            }
         }
 
         int questionsAmount = mQuestions.length;
