@@ -64,12 +64,12 @@ public class CheatActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle saveInstanceState) {
         super.onSaveInstanceState(saveInstanceState);
-        saveInstanceState.putBoolean(ANSWER, mAnswerIsTrue);
+        saveInstanceState.putBoolean(ANSWER, mAnswerIsTrue); // saving the current state of the app
         saveInstanceState.putBoolean(CHEAT, mHasCheat);
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(Bundle savedInstanceState) { // Now rotating CheatActivity does not clear out cheating result
         super.onRestoreInstanceState(savedInstanceState);
         mAnswerIsTrue = savedInstanceState.getBoolean(ANSWER);
         mHasCheat = savedInstanceState.getBoolean(CHEAT);
