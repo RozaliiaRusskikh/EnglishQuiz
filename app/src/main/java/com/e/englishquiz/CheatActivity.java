@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,13 @@ public class CheatActivity extends AppCompatActivity {
 
     private static final String EXTRA_ANSWER_IS_TRUE = "com.e.englishquiz.answer_is_true"; //adding an extra constant
     private static final String EXTRA_ANSWER_SHOWN = "com.e.englishquiz.answer_shown"; // constant for the extra's key
+    private static final String ANSWER = "cheated_answer";
+    private static final String CHEAT = "cheat";
 
     private Button mShowAnswerButton;
     private TextView mAnswerTextView;
     private boolean mAnswerIsTrue;
+    private boolean mHasCheat;
 
 
     public static Intent newIntent(Context packageContext, boolean isAnswerTrue) { //creating method to encapsulating of implementation details (creating an Intent with the extras)
@@ -46,6 +50,7 @@ public class CheatActivity extends AppCompatActivity {
                 String answer = String.valueOf(mAnswerIsTrue);
                 mAnswerTextView.setText(answer);
                 setAnswerShownResult(true);
+                mHasCheat = true;
             }
         });
     }
@@ -54,5 +59,27 @@ public class CheatActivity extends AppCompatActivity {
         Intent data = new Intent(); // creating an intent instance
         data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown); // putting an extra on intent
         setResult(RESULT_OK, data); // setting a result (sending data back to the parent)
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle saveInstanceState) {
+        super.onSaveInstanceState(saveInstanceState);
+        saveInstanceState.putBoolean(ANSWER, mAnswerIsTrue);
+        saveInstanceState.putBoolean(CHEAT, mHasCheat);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mAnswerIsTrue = savedInstanceState.getBoolean(ANSWER);
+        mHasCheat = savedInstanceState.getBoolean(CHEAT);
+        if (mHasCheat) {
+            setAnswerShownResult(true);
+            if (mAnswerIsTrue) {
+                mAnswerTextView.setText(R.string.true_button);
+            } else {
+                mAnswerTextView.setText(R.string.false_button);
+            }
+        }
     }
 }
