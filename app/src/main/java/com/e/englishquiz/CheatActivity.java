@@ -26,6 +26,7 @@ public class CheatActivity extends AppCompatActivity {
     private TextView mAnswerTextView;
     private boolean mAnswerIsTrue;
     private boolean mHasCheat;
+    private TextView mApiVersionTextView;
 
 
     public static Intent newIntent(Context packageContext, boolean isAnswerTrue) { //creating method to encapsulating of implementation details (creating an Intent with the extras)
@@ -56,17 +57,23 @@ public class CheatActivity extends AppCompatActivity {
                 setAnswerShownResult(true);
                 mHasCheat = true;
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+               /* mApiVersionTextView = (TextView) findViewById(R.id.apiVersionsTextView);
+                mApiVersionTextView.setText(String.format("API level %d", Build.VERSION.SDK_INT));*/ // setText method  for setting text that was not set in the layout because
+                //it is unknown the device's build version until runtime. Build.VERSION.SDK_INT - the SDK version of the software currently running on this hardware device.
+
+                // checking the device's build version first
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // circular animation will appear when the app is running on a device with API level 21 or higher
+                    // adding activity animation code
                     int cx = mShowAnswerButton.getWidth() / 2;
                     int cy = mShowAnswerButton.getHeight() / 2;
                     float radius = mShowAnswerButton.getWidth();
                     Animator anim = ViewAnimationUtils.
-                            createCircularReveal(mShowAnswerButton, cx, cy, radius, 0);
+                            createCircularReveal(mShowAnswerButton, cx, cy, radius, 0); // creating animator
                     anim.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
-                            mShowAnswerButton.setVisibility(View.INVISIBLE);
+                            mShowAnswerButton.setVisibility(View.INVISIBLE); // hiding the ShowAnswerButton: radius moves from the width of the button to 0
                         }
                     });
                     anim.start();
