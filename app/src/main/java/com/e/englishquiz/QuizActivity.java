@@ -20,13 +20,13 @@ public class QuizActivity extends AppCompatActivity {
     private static final String KEY_INDEX = "index"; // key for bundle
     private static final int REQUEST_CODE_CHEAT = 0; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
     private static final String CHEAT = "cheat"; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
-
     // adding member variables and a Question array
     private Button mTrueButton;
     private Button mFalseButton;
     private TextView mQuestionTextView;
     private Button mNextButton;
     private Button mCheatButton;
+    private TextView mCheatLeftTimesTextView;
 
     private Question[] mQuestions = new Question[]{
             new Question(R.string.question_about_auxiliary_verb, false),
@@ -41,6 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     private int mCurrentIndex = 0;
     private int mCorrectAnswerAmount = 0;
     private boolean mIsCheater; // adding a member variable to hold the value that CheatActivity is passing back
+    private int mCheatLeftTimes = 3; // allow the user to cheat a maximum of three times
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +49,13 @@ public class QuizActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
         if (savedInstanceState != null) { // reading saving data in SaveInstantState back
-            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0); // saving data
             mIsCheater = savedInstanceState.getBoolean(CHEAT, false);
         }
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view); // getting references to widget
+
+        mCheatLeftTimesTextView = (TextView) findViewById(R.id.number_of_remaining_cheat_token);
 
         mTrueButton = (Button) findViewById(R.id.true_button); // getting references to widget
         mTrueButton.setOnClickListener(new View.OnClickListener() { // setting listener
@@ -80,6 +83,9 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mTrueButton.setEnabled(true);
                 mFalseButton.setEnabled(true);
+                if (mCheatLeftTimes > 0) {
+                    mCheatButton.setEnabled(true);
+                }
                 mCurrentIndex++; // incrementing the index
                 mIsCheater = false;
                 updateQuestion();
@@ -94,11 +100,14 @@ public class QuizActivity extends AppCompatActivity {
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean answerIsTrue = mQuestions[mCurrentIndex].isAnswerTrue();
-                Intent intent = CheatActivity.newIntent(QuizActivity.this, answerIsTrue);
-                startActivityForResult(intent, REQUEST_CODE_CHEAT); //starting CheatActivity and hearing back from the child activity
+                if (mCheatLeftTimes > 0) { // checking  of cheat tokens amount
+                    boolean answerIsTrue = mQuestions[mCurrentIndex].isAnswerTrue();
+                    Intent intent = CheatActivity.newIntent(QuizActivity.this, answerIsTrue);
+                    startActivityForResult(intent, REQUEST_CODE_CHEAT); //starting CheatActivity and hearing back from the child activity
+                }
             }
         });
+
         updateQuestion();
     }
 
@@ -113,7 +122,15 @@ public class QuizActivity extends AppCompatActivity {
             if (data == null) {
                 return;
             }
+
             mIsCheater = CheatActivity.wasAnswerShown(data);
+            // mCheatLeftTimes will only be changed when the answer has been shown. If the mCheatButton is clicked but the answer is not shown, the mCheatLeftTimes will not be changed.
+            mCheatLeftTimes--;
+            mCheatButton.setEnabled(false); //Cheat Button will be disabled when the answer once has been shown
+            mCheatLeftTimesTextView.setText(getString(R.string.cheat_left_times, mCheatLeftTimes));//displaying the number of remaing cheat tokens
+            if (mCheatLeftTimes == 0) { // if no tokens remain, the Cheat button become disable
+                mCheatButton.setEnabled(false);
+            }
         }
     }
 

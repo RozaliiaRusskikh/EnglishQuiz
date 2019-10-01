@@ -8,11 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
@@ -26,7 +24,7 @@ public class CheatActivity extends AppCompatActivity {
     private TextView mAnswerTextView;
     private boolean mAnswerIsTrue;
     private boolean mHasCheat;
-    private TextView mApiVersionTextView;
+    //private TextView mApiVersionTextView;
 
 
     public static Intent newIntent(Context packageContext, boolean isAnswerTrue) { //creating method to encapsulating of implementation details (creating an Intent with the extras)
