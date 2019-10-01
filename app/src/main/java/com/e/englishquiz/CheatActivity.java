@@ -19,11 +19,13 @@ public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_SHOWN = "com.e.englishquiz.answer_shown"; // constant for the extra's key
     private static final String ANSWER = "cheated_answer";
     private static final String CHEAT = "cheat";
+    private static final String INVISIBLE = "invisible";
 
     private Button mShowAnswerButton;
     private TextView mAnswerTextView;
     private boolean mAnswerIsTrue;
     private boolean mHasCheat;
+    private boolean mIsInvisible;
     //private TextView mApiVersionTextView;
 
 
@@ -78,6 +80,7 @@ public class CheatActivity extends AppCompatActivity {
                 } else {
                     mShowAnswerButton.setVisibility(View.INVISIBLE);
                 }
+                mIsInvisible = true;
             }
         });
     }
@@ -93,12 +96,14 @@ public class CheatActivity extends AppCompatActivity {
         super.onSaveInstanceState(saveInstanceState);
         saveInstanceState.putBoolean(ANSWER, mAnswerIsTrue); // saving the current state of the app
         saveInstanceState.putBoolean(CHEAT, mHasCheat);
+        saveInstanceState.putBoolean(INVISIBLE, mIsInvisible);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) { // Now rotating CheatActivity does not clear out cheating result
         super.onRestoreInstanceState(savedInstanceState);
         mAnswerIsTrue = savedInstanceState.getBoolean(ANSWER);
+        mIsInvisible = savedInstanceState.getBoolean(INVISIBLE);
         mHasCheat = savedInstanceState.getBoolean(CHEAT);
         if (mHasCheat) {
             setAnswerShownResult(true);
@@ -107,6 +112,10 @@ public class CheatActivity extends AppCompatActivity {
             } else {
                 mAnswerTextView.setText(R.string.false_button);
             }
+        }
+
+        if (mIsInvisible) {
+            mShowAnswerButton.setVisibility(View.INVISIBLE);
         }
     }
 }

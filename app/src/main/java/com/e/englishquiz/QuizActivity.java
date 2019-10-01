@@ -18,6 +18,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index"; // key for bundle
+    private static final String AMOUNT_CHEATS = "amount"; // key for bundle
     private static final int REQUEST_CODE_CHEAT = 0; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
     private static final String CHEAT = "cheat"; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
     // adding member variables and a Question array
@@ -50,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         if (savedInstanceState != null) { // reading saving data in SaveInstantState back
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0); // saving data
+            mCheatLeftTimes = savedInstanceState.getInt(AMOUNT_CHEATS, 0); // saving data
             mIsCheater = savedInstanceState.getBoolean(CHEAT, false);
         }
 
@@ -108,6 +110,11 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        mCheatLeftTimesTextView.setText(getString(R.string.cheat_left_times, mCheatLeftTimes)); // restore the message
+        if (mCheatLeftTimes == 0) { // if no tokens remain, the Cheat button become disable
+            mCheatButton.setEnabled(false);
+        }
+
         updateQuestion();
     }
 
@@ -126,8 +133,8 @@ public class QuizActivity extends AppCompatActivity {
             mIsCheater = CheatActivity.wasAnswerShown(data);
             // mCheatLeftTimes will only be changed when the answer has been shown. If the mCheatButton is clicked but the answer is not shown, the mCheatLeftTimes will not be changed.
             mCheatLeftTimes--;
-            mCheatButton.setEnabled(false); //Cheat Button will be disabled when the answer once has been shown
-            mCheatLeftTimesTextView.setText(getString(R.string.cheat_left_times, mCheatLeftTimes));//displaying the number of remaing cheat tokens
+            mCheatLeftTimesTextView.setText(getString(R.string.cheat_left_times, mCheatLeftTimes));//displaying the number of remaining cheat tokens
+
             if (mCheatLeftTimes == 0) { // if no tokens remain, the Cheat button become disable
                 mCheatButton.setEnabled(false);
             }
@@ -157,6 +164,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        savedInstanceState.putInt(AMOUNT_CHEATS, mCheatLeftTimes);
         savedInstanceState.putBoolean(CHEAT, mIsCheater);
     }
 
