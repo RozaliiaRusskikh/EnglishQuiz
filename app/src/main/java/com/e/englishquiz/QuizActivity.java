@@ -66,6 +66,7 @@ public class QuizActivity extends AppCompatActivity {
                 checkAnswer(true);
                 mTrueButton.setEnabled(false); // disabling the buttons to prevent multiple answers being entered
                 mFalseButton.setEnabled(false);
+                mCheatButton.setEnabled(false);
             }
         });
 
@@ -76,6 +77,7 @@ public class QuizActivity extends AppCompatActivity {
                 checkAnswer(false);
                 mTrueButton.setEnabled(false); // disabling the buttons to prevent multiple answers being entered
                 mFalseButton.setEnabled(false);
+                mCheatButton.setEnabled(false);
             }
         });
 
