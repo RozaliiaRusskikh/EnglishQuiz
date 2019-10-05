@@ -57,7 +57,7 @@
         android:text="@string/next_button"
         android:drawableRight="@drawable/arrow_right"
         android:drawablePadding="2dp"
-        android:background="#e1c1e3"
+        android:background="@color/actionBarColor"
         android:layout_margin="5dp"
         android:padding="5dp"/>
 
