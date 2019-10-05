@@ -2,7 +2,8 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/question_text_view"
@@ -10,7 +11,8 @@
         android:layout_height="wrap_content"
         android:padding="24dp"
         android:layout_margin="40dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -23,16 +25,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/true_button"
-            android:background="@color/colorPrimary"
-            android:layout_margin="3dp"/>
+            android:layout_margin="3dp"
+            android:background="@color/actionBarColor"/>
 
         <Button
             android:id="@+id/false_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/false_button"
-            android:background="@color/colorPrimary"
-            android:layout_margin="3dp"/>
+            android:layout_margin="3dp"
+            android:background="@color/actionBarColor"/>
     </LinearLayout>
 
     <Button
@@ -40,7 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cheat_button"
-        android:layout_gravity="bottom|center_horizontal"/>
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="#f0e9f7"/>
 
     <Button
         android:id="@+id/next_button"
@@ -49,12 +52,14 @@
         android:layout_gravity="bottom|right"
         android:text="@string/next_button"
         android:drawableRight="@drawable/arrow_right"
-        android:drawablePadding="4dp"/>
+        android:drawablePadding="4dp"
+        android:background="#e1c1e3"/>
 
     <TextView
         android:id="@+id/number_of_remaining_cheat_token"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:textStyle="italic"/>
 </FrameLayout>
