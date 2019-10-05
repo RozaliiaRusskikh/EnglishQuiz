@@ -9,6 +9,12 @@
     tools:context="com.e.englishquiz.CheatActivity"
     android:background="@drawable/background">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_warning"
+        android:layout_gravity="top"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +26,7 @@
         android:id="@+id/answer_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="24dp"
+        android:layout_margin="24dp"
         tools:text="Answer"/>
 
     <Button
@@ -28,7 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_answer_button"
-        android:background="@color/actionBarColor"/>
+        android:background="@color/actionBarColor"
+        android:padding="5dp"/>
 
     <!--<TextView     // for training: creating widget that reports what API level the devixe is running
         android:id="@+id/apiVersionsTextView"
