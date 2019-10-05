@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/icons_question_mark"
+        android:src="@drawable/icon_question_mark"
         android:layout_gravity="top"/>
 
     <TextView
@@ -48,9 +48,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cheat_button"
-        android:drawablePadding="5dp"
         android:background="#f0e9f7"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:drawableRight="@drawable/icon_wink"
+        android:drawablePadding="2dp"
+        android:padding="5dp"/>
 
     <Button
         android:id="@+id/next_button"
@@ -58,9 +60,10 @@
         android:layout_height="wrap_content"
         android:text="@string/next_button"
         android:drawableRight="@drawable/arrow_right"
-        android:drawablePadding="3dp"
+        android:drawablePadding="2dp"
         android:background="#e1c1e3"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/number_of_remaining_cheat_token"
