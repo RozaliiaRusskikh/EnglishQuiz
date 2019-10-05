@@ -3,21 +3,26 @@ package com.e.englishquiz;
 public class Question {
     /*The Question class holds two pieces of data:
     the question text and the question answer (true or false)*/
-    private int mQuestionTextId; // the variable holds the resource ID of a string resource for yhe question
+    private int mId;
+    private String mQuestionText;
     private boolean mIsAnswerTrue;
 
-    public Question(int questionTextId, boolean answerTrue) { // the Question constructor
-        mQuestionTextId = questionTextId;
+    public Question(int id, String questionText, boolean answerTrue) { // the Question constructor
+        mId = id;
+        mQuestionText = questionText;
         mIsAnswerTrue = answerTrue;
     }
-// generating getters and setters
 
-    public int getQuestionTextId() {
-        return mQuestionTextId;
+    public int getId() {
+        return mId;
     }
 
-    public void setQuestionTextId(int questionTextId) {
-        mQuestionTextId = questionTextId;
+    public String getQuestionText() {
+        return mQuestionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        mQuestionText = questionText;
     }
 
     public boolean isAnswerTrue() {

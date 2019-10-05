@@ -1,6 +1,5 @@
 package com.e.englishquiz;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -12,7 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -28,16 +30,10 @@ public class QuizActivity extends AppCompatActivity {
     private Button mNextButton;
     private Button mCheatButton;
     private TextView mCheatLeftTimesTextView;
+    // for database
+    private QuestionsRepository repository; //instance of QuestionsRepository
 
-    private Question[] mQuestions = new Question[]{
-            new Question(R.string.question_about_auxiliary_verb, false),
-            new Question(R.string.question_about_must, false),
-            new Question(R.string.question_about_phrasal_verb, false),
-            new Question(R.string.question_about_shortest_sentence, false),
-            new Question(R.string.question_about_used_to_do, false),
-            new Question(R.string.question_about_verb_to_think, true),
-            new Question(R.string.question_about_verb_to_do, false)
-    };
+    private ArrayList<Question> mQuestions;
 
     private int mCurrentIndex = 0;
     private int mCorrectAnswerAmount = 0;
@@ -49,6 +45,16 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
+
+        repository = new QuestionsRepository(this);
+        mQuestions = repository.getAll();
+
+        try {
+            repository.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
         if (savedInstanceState != null) { // reading saving data in SaveInstantState back
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0); // saving data
             mCheatLeftTimes = savedInstanceState.getInt(AMOUNT_CHEATS, 0); // saving data
@@ -56,6 +62,8 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view); // getting references to widget
+        String question = (mQuestions.get(mCurrentIndex).getQuestionText());
+        mQuestionTextView.setText((question));
 
         mCheatLeftTimesTextView = (TextView) findViewById(R.id.number_of_remaining_cheat_token);
 
@@ -93,7 +101,7 @@ public class QuizActivity extends AppCompatActivity {
                 mCurrentIndex++; // incrementing the index
                 mIsCheater = false;
                 updateQuestion();
-                int lastIndex = mQuestions.length - 1;
+                int lastIndex = mQuestions.size() - 1;
                 if (mCurrentIndex == lastIndex) { // disabling the Next button when there is no next question
                     mNextButton.setEnabled(false);
                 }
@@ -105,7 +113,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mCheatLeftTimes > 0) { // checking  of cheat tokens amount
-                    boolean answerIsTrue = mQuestions[mCurrentIndex].isAnswerTrue();
+                    boolean answerIsTrue = mQuestions.get(mCurrentIndex).isAnswerTrue();
                     Intent intent = CheatActivity.newIntent(QuizActivity.this, answerIsTrue);
                     startActivityForResult(intent, REQUEST_CODE_CHEAT); //starting CheatActivity and hearing back from the child activity
                 }
@@ -183,12 +191,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() { // updating TextView's text
-        int question = mQuestions[mCurrentIndex].getQuestionTextId();
+        String question = mQuestions.get(mCurrentIndex).getQuestionText();
         mQuestionTextView.setText(question);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
-        boolean answerTrue = mQuestions[mCurrentIndex].isAnswerTrue();
+        boolean answerTrue = mQuestions.get(mCurrentIndex).isAnswerTrue();
         String messageResult = null;
         if (mIsCheater) {
             messageResult = this.getResources().getString(R.string.juidgment_toast);
@@ -201,7 +209,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
 
-        int questionsAmount = mQuestions.length;
+        int questionsAmount = mQuestions.size();
         int lastIndex = questionsAmount - 1;
         if (mCurrentIndex == lastIndex) {
             double percentageScore = (mCorrectAnswerAmount / (double) questionsAmount) * 100;
