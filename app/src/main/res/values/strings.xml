@@ -14,7 +14,7 @@
     <string name="train_btn">Play and train</string>
     <string name="about_btn">About app</string>
     <string name="about_app_text">This app is dedicated to one of the most difficult topic in the English language - phrasal verbs.
-                                  We have included 100 common phrasal verbs. You can read and learn them. After you have studied the verbs you are able to check your knowledge.
+                                  \nWe have included 100 common phrasal verbs. You can read and learn them.\nAfter you have studied the verbs you are able to check your knowledge.
                                   The app has True/False questions. You can answer questions and get feedback if you answered correctly or not.
-                                  You also have an interesting option to cheat to find the answer. Enjoy :) </string>
+                                  You also have an interesting option to cheat to find the answer.\nEnjoy :) </string>
 </resources>

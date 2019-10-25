@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
         mLearnButton.setOnClickListener(new View.OnClickListener() { // setting listeners
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
+
             }
         });
 
@@ -31,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mTrainButton.setOnClickListener(new View.OnClickListener() { // setting listeners
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
+                Intent intentTrain = new Intent(MainActivity.this, QuizActivity.class);
+                startActivity(intentTrain);
             }
         });
 
@@ -40,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         mAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
+                Intent intentAbout = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intentAbout);
             }
         });
     }

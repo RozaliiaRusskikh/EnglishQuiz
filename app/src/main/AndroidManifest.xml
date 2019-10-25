@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".QuizActivity"></activity>
         <activity android:name=".CheatActivity"></activity>
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
