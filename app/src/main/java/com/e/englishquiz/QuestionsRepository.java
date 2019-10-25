@@ -22,7 +22,7 @@ public class QuestionsRepository extends SQLiteOpenHelper {
     private SQLiteDatabase mDataBase;
     private Context mContext;
     private boolean mNeedUpdate = false;
-    private int questionAmount = 21;
+
 
     public QuestionsRepository(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

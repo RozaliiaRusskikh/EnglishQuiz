@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/puzzle" />
+
+    <Button
+        android:id="@+id/learn_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/learn_btn"
+        android:padding="25dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/train_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/train_btn"
+        android:padding="25dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/about_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_btn"
+        android:padding="10dp"/>
+
+</LinearLayout>

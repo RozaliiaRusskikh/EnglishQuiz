@@ -2,8 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/question_text_view"
@@ -25,16 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/true_button"
-            android:layout_margin="5dp"
-            android:background="@color/actionBarColor"/>
+            android:layout_margin="5dp"/>
 
         <Button
             android:id="@+id/false_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/false_button"
-            android:layout_margin="5dp"
-            android:background="@color/actionBarColor"/>
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
     <Button
@@ -45,7 +42,6 @@
         android:layout_gravity="bottom|center_horizontal"
         android:background="#f0e9f7"
         android:layout_margin="5dp"
-        android:drawableRight="@drawable/icon_wink"
         android:drawablePadding="2dp"
         android:padding="5dp"/>
 
@@ -57,7 +53,6 @@
         android:text="@string/next_button"
         android:drawableRight="@drawable/arrow_right"
         android:drawablePadding="2dp"
-        android:background="@color/actionBarColor"
         android:layout_margin="5dp"
         android:padding="5dp"/>
 

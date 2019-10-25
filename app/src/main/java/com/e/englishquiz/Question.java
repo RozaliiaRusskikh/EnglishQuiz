@@ -21,15 +21,7 @@ public class Question {
         return mQuestionText;
     }
 
-    public void setQuestionText(String questionText) {
-        mQuestionText = questionText;
-    }
-
     public boolean isAnswerTrue() {
         return mIsAnswerTrue;
-    }
-
-    public void setAnswerTrue(boolean answerTrue) {
-        mIsAnswerTrue = answerTrue;
     }
 }

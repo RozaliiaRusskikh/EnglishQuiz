@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.e.englishquiz.CheatActivity"
-    android:background="@drawable/background">
+    tools:context="com.e.englishquiz.CheatActivity">
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_warning"
         android:layout_gravity="top"/>
 
     <TextView
@@ -34,13 +32,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_answer_button"
-        android:background="@color/actionBarColor"
         android:padding="5dp"/>
-
-    <!--<TextView     // for training: creating widget that reports what API level the devixe is running
-        android:id="@+id/apiVersionsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="API Level"
-        android:layout_margin="10dp"/>-->
 </LinearLayout>

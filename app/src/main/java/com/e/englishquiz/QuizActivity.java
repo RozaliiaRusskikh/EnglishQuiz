@@ -18,11 +18,12 @@ import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index"; // key for bundle
     private static final String AMOUNT_CHEATS = "amount"; // key for bundle
+
     private static final int REQUEST_CODE_CHEAT = 0; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
     private static final String CHEAT = "cheat"; // request code (user-defined integer) that is sent to the child activity and then received back by the parent
+
     // adding member variables and a Question array
     private Button mTrueButton;
     private Button mFalseButton;
@@ -30,6 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mNextButton;
     private Button mCheatButton;
     private TextView mCheatLeftTimesTextView;
+
     // for database
     private QuestionsRepository repository; //instance of QuestionsRepository
 
@@ -43,7 +45,6 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
 
         repository = new QuestionsRepository(this);
@@ -154,25 +155,21 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart() called");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume() called");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause() called");
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) { // saving data across rotation
         super.onSaveInstanceState(savedInstanceState);
-        Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
         savedInstanceState.putInt(AMOUNT_CHEATS, mCheatLeftTimes);
         savedInstanceState.putBoolean(CHEAT, mIsCheater);
@@ -181,13 +178,11 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop called()");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy() called");
     }
 
     private void updateQuestion() { // updating TextView's text

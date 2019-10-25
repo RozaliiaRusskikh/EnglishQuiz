@@ -26,7 +26,6 @@ public class CheatActivity extends AppCompatActivity {
     private boolean mAnswerIsTrue;
     private boolean mHasCheat;
     private boolean mIsInvisible;
-    //private TextView mApiVersionTextView;
 
 
     public static Intent newIntent(Context packageContext, boolean isAnswerTrue) { //creating method to encapsulating of implementation details (creating an Intent with the extras)
@@ -56,10 +55,6 @@ public class CheatActivity extends AppCompatActivity {
                 mAnswerTextView.setText(answer);
                 setAnswerShownResult(true);
                 mHasCheat = true;
-
-               /* mApiVersionTextView = (TextView) findViewById(R.id.apiVersionsTextView);
-                mApiVersionTextView.setText(String.format("API level %d", Build.VERSION.SDK_INT));*/ // setText method  for setting text that was not set in the layout because
-                //it is unknown the device's build version until runtime. Build.VERSION.SDK_INT - the SDK version of the software currently running on this hardware device.
 
                 // checking the device's build version first
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // circular animation will appear when the app is running on a device with API level 21 or higher
