@@ -20,9 +20,8 @@ public class QuestionsRepository extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
 
     private SQLiteDatabase mDataBase;
-    private Context mContext;
+    private final Context mContext;
     private boolean mNeedUpdate = false;
-
 
     public QuestionsRepository(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -68,6 +67,7 @@ public class QuestionsRepository extends SQLiteOpenHelper {
 
     private void copyDBFile() throws IOException {
         InputStream mInput = mContext.getAssets().open(DB_NAME);
+        //InputStream mInput = mContext.getResources().openRawResource(R.raw.info);
         OutputStream mOutput = new FileOutputStream(DB_PATH + DB_NAME);
         byte[] mBuffer = new byte[1024];
         int mLength;
@@ -92,6 +92,7 @@ public class QuestionsRepository extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
     }
 
     @Override
