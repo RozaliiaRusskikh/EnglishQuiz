@@ -21,17 +21,19 @@
 
         <Button
             android:id="@+id/true_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/true_button"
-            android:layout_margin="5dp"/>
+            android:layout_margin="15dp"
+            android:background="@drawable/round_buttton"/>
 
         <Button
             android:id="@+id/false_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/false_button"
-            android:layout_margin="5dp"/>
+            android:layout_margin="15dp"
+            android:background="@drawable/round_buttton"/>
     </LinearLayout>
 
     <Button
