@@ -10,7 +10,7 @@
     <string name="next_button">Next</string>
     <string name="warning_text">Are you sure you want to do this?</string>
     <string name="show_answer_button">Show answer</string>
-    <string name="cheat_button">Cheat!</string>
+    <string name="cheat_button">Cheat</string>
     <string name="juidgment_toast">Cheating is wrong!</string>
     <string name="cheat_left_times">The number of remaining cheat tokens is %d!</string>
     <string name="learn_btn">Learn the most common phrasal verbs</string>

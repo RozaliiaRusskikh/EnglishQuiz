@@ -63,8 +63,10 @@
         android:layout_height="wrap_content"
         android:text="@string/cheat_button"
         android:layout_marginTop="150dp"
-        android:padding="5dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:drawableRight="@drawable/ic_solved"
+        android:drawablePadding="2dp"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/number_of_remaining_cheat_token"
