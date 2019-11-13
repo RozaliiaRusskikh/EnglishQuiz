@@ -16,33 +16,39 @@
 
         <Button
             android:id="@+id/learn_btn"
-            android:layout_width="330dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/learn_btn"
             android:layout_marginBottom="5dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:background="@color/mainBackground"
+            android:padding="5dp"/>
 
         <Button
             android:id="@+id/train_btn"
-            android:layout_width="330dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/train_btn"
             android:layout_marginBottom="5dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:background="@color/mainBackground"
+            android:padding="5dp"/>
 
         <Button
             android:id="@+id/about_btn"
-            android:layout_width="330dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_btn"
             android:textSize="12dp"
-            android:drawable="@drawable/ic_info"
-            android:drawablePadding="7dp"/>
+            android:drawableLeft="@drawable/ic_info"
+            android:drawablePadding="7dp"
+            android:background="@color/mainBackground"
+            android:padding="5dp"/>
     </LinearLayout>
 
     <ImageView
         android:layout_height="wrap_content"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:src="@drawable/puzzle"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"/>
