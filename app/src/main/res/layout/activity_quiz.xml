@@ -9,9 +9,10 @@
         layout="@layout/toolbar" />
 
     <ImageView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center"/>
+        android:layout_gravity="top|center"
+        android:src="@drawable/ic_quiz_on_computer"/>
 
     <TextView
         android:id="@+id/question_text_view"
@@ -54,8 +55,8 @@
         android:drawablePadding="2dp"
         android:layout_margin="10dp"
         android:padding="5dp"
-        android:background="@drawable/round_buttton"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:background="@color/mainColor"/>
 
     <Button
         android:id="@+id/cheat_button"

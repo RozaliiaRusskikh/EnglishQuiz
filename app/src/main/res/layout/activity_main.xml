@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/puzzle" />
+        android:src="@drawable/ic_head" />
 
     <Button
         android:id="@+id/learn_btn"
@@ -37,7 +37,6 @@
         android:layout_height="wrap_content"
         android:text="@string/about_btn"
         android:padding="10dp"
-        android:drawableTop="@drawable/ic_info"
         android:textSize="10dp"/>
 
 </LinearLayout>
