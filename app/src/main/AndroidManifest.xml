@@ -16,13 +16,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuizActivity"
-            android:label="@string/quiz_page">
+            android:label="@string/train_btn">
         </activity>
         <activity android:name=".CheatActivity"
             android:label="@string/cheat_page">
         </activity>
         <activity android:name=".AboutActivity"
-            android:label="@string/about_page">
+            android:label="@string/about_btn">
+        </activity>
+        <activity android:name=".VerbsListActivity"
+            android:label="@string/learn_page">
+        </activity>
+        <activity android:name=".PhrasalVerbActivity"
+            android:label="@string/verb_page">
         </activity>
     </application>
 

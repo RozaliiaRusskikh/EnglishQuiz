@@ -47,5 +47,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentAbout);
             }
         });
+
+        mLearnButton = findViewById(R.id.learn_btn);
+        mLearnButton.setOnClickListener(new View.OnClickListener() { // setting listeners
+            @Override
+            public void onClick(View v) {
+                Intent intentLearn = new Intent(MainActivity.this, VerbsListActivity.class);
+                startActivity(intentLearn);
+            }
+        });
     }
 }
