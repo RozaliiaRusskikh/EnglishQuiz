@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_computer_and_books"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"/>
 
     <Button
         android:id="@+id/learn_btn"
