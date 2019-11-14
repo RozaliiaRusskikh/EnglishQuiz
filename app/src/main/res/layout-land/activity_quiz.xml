@@ -59,7 +59,7 @@
         android:drawableRight="@drawable/ic_solved"
         android:drawablePadding="5dp"
         android:background="@drawable/round_buttton"
-        android:padding="10dp"/>
+        android:padding="5dp"/>
 
     <Button
         android:id="@+id/next_button"
