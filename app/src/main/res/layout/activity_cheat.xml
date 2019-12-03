@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.e.englishquiz.CheatActivity">
+    tools:context="com.e.englishquiz.CheatActivity"
+    android:background="@color/white">
 
     <include
         layout="@layout/toolbar" />
@@ -13,9 +14,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
+        android:layout_gravity="center"
         android:src="@drawable/ic_warning"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="@string/warning"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_answer_button"
-        android:padding="5dp"
+        android:padding="10dp"
         android:layout_gravity="center"
-        android:background="@drawable/round_buttton"/>
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"/>
 </LinearLayout>

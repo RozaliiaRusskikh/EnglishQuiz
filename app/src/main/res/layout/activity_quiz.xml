@@ -3,17 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <include
         layout="@layout/toolbar" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:src="@drawable/ic_quiz_on_computer"
-        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/question_text_view"
@@ -36,7 +31,8 @@
             android:layout_height="wrap_content"
             android:text="@string/true_button"
             android:layout_margin="7dp"
-           android:background="@color/colorPrimary"/>
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/false_button"
@@ -44,7 +40,8 @@
             android:layout_height="wrap_content"
             android:text="@string/false_button"
             android:layout_margin="7dp"
-            android:background="@color/colorAccent"/>
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <Button
@@ -52,12 +49,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next_button"
-        android:drawableRight="@drawable/arrow_right"
+        android:drawableRight="@drawable/ic_arrow_right"
         android:drawablePadding="2dp"
         android:layout_margin="3dp"
         android:padding="5dp"
         android:layout_gravity="center"
-        android:background="@drawable/round_buttton"/>
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/cheat_button"
@@ -66,10 +64,11 @@
         android:text="@string/cheat_button"
         android:layout_marginTop="60dp"
         android:layout_gravity="center"
-        android:drawableRight="@drawable/ic_solved"
+        android:drawableRight="@drawable/ic_cheat"
         android:drawablePadding="5dp"
-        android:background="@drawable/round_buttton"
-        android:padding="5dp"/>
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:padding="6dp"/>
 
     <TextView
         android:id="@+id/number_of_remaining_cheat_token"

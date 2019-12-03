@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Phrasal verbs training</string>
+    <string name="logo">Logo</string>
     <string name="cheat_page">Show answer</string>
+    <string name="firework">Firework</string>
+    <string name="lightness">Lightness</string>
+    <string name="warning">Warning</string>
     <string name="learn_page">Learn phrasal verbs</string>
     <string name="verb_page">Phrasal verb</string>
     <string name="true_button">True</string>
@@ -13,7 +17,7 @@
     <string name="cheat_button">Cheat</string>
     <string name="juidgment_toast">Cheating is wrong!</string>
     <string name="cheat_left_times">The number of remaining cheat tokens is %d!</string>
-    <string name="learn_btn">Learn the most common phrasal verbs</string>
+    <string name="learn_btn">Learn the most useful phrasal verbs</string>
     <string name="train_btn">Play and train</string>
     <string name="about_btn">About app</string>
     <string name="verb_known_label">I know</string>
