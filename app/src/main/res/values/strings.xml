@@ -4,9 +4,11 @@
     <string name="cheat_page">Show answer</string>
     <string name="firework">Firework</string>
     <string name="lightness">Lightness</string>
+    <string name="amount_of_correct_answers">Amount of correct answers is</string>
     <string name="warning">Warning</string>
     <string name="learn_page">Learn phrasal verbs</string>
     <string name="verb_page">Phrasal verb</string>
+    <string name="result">Result</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="correct_toast">Correct!</string>

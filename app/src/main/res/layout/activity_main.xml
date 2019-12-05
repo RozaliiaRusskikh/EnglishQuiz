@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_books"
+        android:src="@drawable/img_books"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:text="@string/learn_btn"
         android:padding="23dp"
-        android:textSize="15sp"
         android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:textColor="@color/white"
@@ -36,7 +35,6 @@
         android:layout_height="wrap_content"
         android:text="@string/train_btn"
         android:padding="23dp"
-        android:textSize="15sp"
         android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:textColor="@color/white"/>
@@ -55,7 +53,6 @@
             android:drawablePadding="3dp"
             android:padding="10dp"
             android:text="@string/about_btn"
-            android:textSize="12sp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="25dp"/>
 

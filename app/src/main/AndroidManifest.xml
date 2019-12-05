@@ -30,6 +30,9 @@
         <activity android:name=".PhrasalVerbActivity"
             android:label="@string/verb_page">
         </activity>
+        <activity android:name=".ResultActivity"
+            android:label="@string/result">
+        </activity>
     </application>
 
 </manifest>
