@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -227,7 +228,11 @@ public class QuizActivity extends AppCompatActivity {
             messageResult = messageResult + "\n" + "Percentage of correct answers is " + percentageScoreString; // displaying text for Toast with a percentage correct score
         }
 
-        Toast.makeText(this, messageResult, Toast.LENGTH_SHORT).show(); //making toast
+        Toast toast = Toast.makeText(this, messageResult, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 350);
+        View view = toast.getView();
+        view.setBackgroundResource(R.drawable.custom_toast);
+        toast.show();//making toast
     }
 
     @Override

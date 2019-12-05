@@ -31,7 +31,8 @@
         android:id="@+id/verb_known"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/verb_known_label"/>
+        android:text="@string/verb_known_label"
+        android:theme="@style/MyCheckBox"/>
 
 
 </LinearLayout>
