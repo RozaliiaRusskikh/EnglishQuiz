@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -219,20 +220,33 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
 
-        int questionsAmount = mQuestions.size();
-        int lastIndex = questionsAmount - 1;
-        if (mCurrentIndex == lastIndex) {
-            double percentageScore = (mCorrectAnswerAmount / (double) questionsAmount) * 100;
-            String percentageScoreString = new DecimalFormat("#0.00").format(percentageScore);
-
-            messageResult = messageResult + "\n" + "Percentage of correct answers is " + percentageScoreString; // displaying text for Toast with a percentage correct score
-        }
-
         Toast toast = Toast.makeText(this, messageResult, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 350);
         View view = toast.getView();
         view.setBackgroundResource(R.drawable.custom_toast);
         toast.show();//making toast
+
+        int questionsAmount = mQuestions.size();
+        int lastIndex = questionsAmount - 1;
+        if (mCurrentIndex == lastIndex) {
+
+            double percentageScore = (mCorrectAnswerAmount / (double) questionsAmount) * 100;
+            String percentageScoreString = new DecimalFormat("#0.00").format(percentageScore);
+
+            Runnable r = new Runnable() {
+
+                @Override
+                public void run() {
+                    // if you are redirecting from a fragment then use getActivity() as the context.
+                    startActivity(new Intent(QuizActivity.this,ResultActivity.class));
+
+                }
+            };
+
+            Handler h = new Handler();
+            // The Runnable will be executed after the given delay time
+            h.postDelayed(r, 1500); // will be delayed for 1.5 seconds
+        }
     }
 
     @Override
