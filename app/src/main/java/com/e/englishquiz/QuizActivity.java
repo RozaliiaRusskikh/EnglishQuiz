@@ -231,20 +231,19 @@ public class QuizActivity extends AppCompatActivity {
         if (mCurrentIndex == lastIndex) {
 
             double percentageScore = (mCorrectAnswerAmount / (double) questionsAmount) * 100;
-            String percentageScoreString = new DecimalFormat("#0.00").format(percentageScore);
+            final String percentageScoreString = new DecimalFormat("#0").format(percentageScore);
 
             Runnable r = new Runnable() {
 
                 @Override
                 public void run() {
-                    // if you are redirecting from a fragment then use getActivity() as the context.
-                    startActivity(new Intent(QuizActivity.this,ResultActivity.class));
+                    Intent intent = ResultActivity.newIntent(QuizActivity.this, percentageScoreString);
+                    startActivity(intent);
 
                 }
             };
 
             Handler h = new Handler();
-            // The Runnable will be executed after the given delay time
             h.postDelayed(r, 1500); // will be delayed for 1.5 seconds
         }
     }
