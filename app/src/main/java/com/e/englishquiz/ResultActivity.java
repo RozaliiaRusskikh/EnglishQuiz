@@ -36,6 +36,12 @@ public class ResultActivity extends AppCompatActivity {
         mResultTextView.setText(mPercentResult + "%");
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) { // saving data across rotation
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(EXTRA_RESULT_SHOWN, mPercentResult);
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
