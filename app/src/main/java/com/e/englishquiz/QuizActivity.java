@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -69,8 +70,26 @@ public class QuizActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
-        mQuestions = repository.getAll();
 
+        mQuestions = new ArrayList<Question>();
+
+
+        Cursor cursor = mDb.rawQuery("SELECT * FROM questions", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                String questionText = cursor.getString(cursor.getColumnIndex("questionText"));
+                Boolean answer = (cursor.getInt(cursor.getColumnIndex("answer")) > 0);
+
+                Question question = new Question(id, questionText, answer);
+
+                mQuestions.add(question);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
 
         if (savedInstanceState != null) { // reading saving data in SaveInstantState back
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0); // saving data

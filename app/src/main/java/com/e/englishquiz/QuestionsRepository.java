@@ -1,7 +1,6 @@
 package com.e.englishquiz;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 
 public class QuestionsRepository extends SQLiteOpenHelper {
@@ -98,27 +96,5 @@ public class QuestionsRepository extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > oldVersion)
             mNeedUpdate = true;
-    }
-
-    public ArrayList<Question> getAll() {
-        ArrayList<Question> questions = new ArrayList<Question>();
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query("questions", null, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(cursor.getColumnIndex("_id"));
-                String questionText = cursor.getString(cursor.getColumnIndex("questionText"));
-                Boolean answer = (cursor.getInt(cursor.getColumnIndex("answer")) > 0);
-
-                Question question = new Question(id, questionText, answer);
-
-                questions.add(question);
-
-            } while (cursor.moveToNext());
-        }
-
-        return questions;
     }
 }

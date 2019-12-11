@@ -2,18 +2,25 @@ package com.e.englishquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.UUID;
-
 public class PhrasalVerb extends AppCompatActivity {
 
-    private UUID mId;
+    private int mId;
     private String mVerb;
     private String mMeaning;
     private String mExample;
     private boolean mKnown;
 
-    public PhrasalVerb() {
-        mId = UUID.randomUUID();
+    public PhrasalVerb(int id, String verb, String meaning, String example, Boolean known) {
+      mId = id;
+      mVerb = verb;
+      mMeaning = meaning;
+      mExample = example;
+      mKnown = known;
+    }
+
+
+    public int getId() {
+        return mId;
     }
 
     public String getVerb() {
@@ -36,4 +43,3 @@ public class PhrasalVerb extends AppCompatActivity {
         mKnown = known;
     }
 }
-g
