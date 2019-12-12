@@ -13,26 +13,47 @@
         android:id="@+id/verb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textAlignment="center"
         style="?android:listSeparatorTextViewStyle"/>
 
     <TextView
         android:id="@+id/meaning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:listSeparatorTextViewStyle"/>
+        style="?android:listSeparatorTextViewStyle"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="@string/example"
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/example"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         style="?android:listSeparatorTextViewStyle"/>
 
-    <CheckBox
-        android:id="@+id/verb_known"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/verb_known_label"
-        android:theme="@style/MyCheckBox"/>
+        android:layout_height="match_parent">
 
-
+        <CheckBox
+            android:id="@+id/verb_known"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/verb_known_label"
+            android:theme="@style/MyCheckBox"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 </LinearLayout>

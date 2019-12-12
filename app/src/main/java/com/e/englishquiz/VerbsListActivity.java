@@ -1,10 +1,14 @@
 package com.e.englishquiz;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -67,8 +71,18 @@ public class VerbsListActivity extends AppCompatActivity {
 
         ItemAdapter adapter = new ItemAdapter(mVerbs, this);
 
-        ListView lv = (ListView) findViewById(R.id.list_view);
-        lv.setAdapter(adapter);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { // getting the list and the detail parts working together. When a
+            //user presses an item in the list of verbs, a new PhrasalVerbActivity will appear
+            //and display the details for that instance of PhrasalVerb
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
+                Intent intent = new Intent(VerbsListActivity.this, PhrasalVerbActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

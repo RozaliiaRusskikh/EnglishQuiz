@@ -22,7 +22,9 @@
     <string name="learn_btn">Learn the most useful phrasal verbs</string>
     <string name="train_btn">Play and train</string>
     <string name="about_btn">About app</string>
+    <string name="checked_image">Checked</string>
     <string name="verb_known_label">I know</string>
+    <string name="example">Example:</string>
     <string name="about_app_text">This app is dedicated to one of the most difficult topic in the English language - phrasal verbs.
                                   \nWe have included common phrasal verbs. You can read and learn them.\nAfter you have studied the verbs you are able to check your knowledge.
                                   The app has True/False questions. You can answer questions and get feedback if you answered correctly or not.
