@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -47,6 +48,11 @@ public class ItemAdapter extends BaseAdapter implements ListAdapter {
         PhrasalVerb item = (PhrasalVerb) getItem(i);
         TextView textView = view.findViewById(R.id.verb_title);
         textView.setText(item.getVerb());
+
+        ImageView checkedImageView;
+        checkedImageView = view.findViewById(R.id.imageChecked);
+
+        checkedImageView.setVisibility(item.isKnown() ? View.VISIBLE : View.GONE);
 
         return view;
     }

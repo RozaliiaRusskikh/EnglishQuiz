@@ -1,5 +1,6 @@
 package com.e.englishquiz;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -7,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,10 +20,16 @@ import java.util.ArrayList;
 
 public class VerbsListActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_KNOWN = 0;
+
     private QuestionsRepository questionsRepository;
     private SQLiteDatabase mDb;
 
     private ArrayList<PhrasalVerb> mVerbs;
+    private PhrasalVerb mVerb;
+    private boolean mIsKnown;
+
+    private ImageView mChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +69,14 @@ public class VerbsListActivity extends AppCompatActivity {
                 String example = cursor.getString(cursor.getColumnIndex("example"));
                 Boolean known = (cursor.getInt(cursor.getColumnIndex("isKnown")) > 0);
 
-                PhrasalVerb verb = new PhrasalVerb(id, title, description, example, known);
+                mVerb = new PhrasalVerb(id, title, description, example, known);
 
-                mVerbs.add(verb);
+                mVerbs.add(mVerb);
 
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
 
         ItemAdapter adapter = new ItemAdapter(mVerbs, this);
 
@@ -79,10 +88,26 @@ public class VerbsListActivity extends AppCompatActivity {
             //and display the details for that instance of PhrasalVerb
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
-                Intent intent = new Intent(VerbsListActivity.this, PhrasalVerbActivity.class);
-                startActivity(intent);
+                PhrasalVerb selectedVerb = (PhrasalVerb) parent.getItemAtPosition(position);
+                Intent intent = PhrasalVerbActivity.newIntent(VerbsListActivity.this, selectedVerb.getVerb(), selectedVerb.getMeaning(), selectedVerb.getExample());
+                startActivityForResult(intent, REQUEST_CODE_KNOWN); // Getting a result back from a child activity
             }
         });
+    }
+
+    // Handling a result from PhrasalVerbActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_CODE_KNOWN) {
+            if (data == null) {
+                return;
+            }
+            mIsKnown = PhrasalVerbActivity.wasKnown(data);
+        }
     }
 
     @Override
