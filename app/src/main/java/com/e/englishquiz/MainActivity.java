@@ -21,15 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(toolbar);
-
-        mLearnButton = findViewById(R.id.learn_btn);
-        mLearnButton.setOnClickListener(new View.OnClickListener() { // setting listeners
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+        
         mTrainButton = findViewById(R.id.train_btn);
         mTrainButton.setOnClickListener(new View.OnClickListener() { // setting listeners
             @Override

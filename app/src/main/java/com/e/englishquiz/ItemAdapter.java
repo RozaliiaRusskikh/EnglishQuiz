@@ -15,6 +15,7 @@ public class ItemAdapter extends BaseAdapter implements ListAdapter {
 
     private ArrayList<PhrasalVerb> itemList;
     private Context context;
+    private TextView textViewTitle;
 
     public ItemAdapter(ArrayList<PhrasalVerb> itemList, Context context) {
         this.context = context;
@@ -46,8 +47,8 @@ public class ItemAdapter extends BaseAdapter implements ListAdapter {
         }
 
         PhrasalVerb item = (PhrasalVerb) getItem(i);
-        TextView textView = view.findViewById(R.id.verb_title);
-        textView.setText(item.getVerb());
+        textViewTitle = view.findViewById(R.id.verb_title);
+        textViewTitle.setText(item.getVerb());
 
         ImageView checkedImageView;
         checkedImageView = view.findViewById(R.id.imageChecked);

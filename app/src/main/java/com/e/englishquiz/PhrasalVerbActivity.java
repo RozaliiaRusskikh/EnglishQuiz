@@ -14,21 +14,22 @@ import androidx.appcompat.widget.Toolbar;
 
 public class PhrasalVerbActivity extends AppCompatActivity {
 
-    TextView mTitle;
-    TextView mMeaning;
-    TextView mExample;
-    CheckBox mKnow;
+    private TextView mTitle;
+    private TextView mMeaning;
+    private TextView mExample;
+    private CheckBox mKnow;
 
     private static final String EXTRA_VERB_TITLE = "com.e.englishquiz.verb_title"; // constant for the extra's key
     private static final String EXTRA_VERB_MEANING = "com.e.englishquiz.verb_meaning"; // constant for the extra's key
     private static final String EXTRA_VERB_EXAMPLE = "com.e.englishquiz.verb_example"; // constant for the extra's key
     private static final String EXTRA_KNOWN = "com.e.englishquiz.verb_known"; // constant for the extra's key
 
-    public static Intent newIntent(Context packageContext, String title, String meaning, String example) {
+    public static Intent newIntent(Context packageContext, String title, String meaning, String example, Boolean isKnown) {
         Intent intent = new Intent(packageContext, PhrasalVerbActivity.class);
         intent.putExtra(EXTRA_VERB_TITLE, title);
         intent.putExtra(EXTRA_VERB_MEANING, meaning);
         intent.putExtra(EXTRA_VERB_EXAMPLE, example);
+        intent.putExtra(EXTRA_KNOWN, isKnown);
         return intent;
     }
 
@@ -44,6 +45,7 @@ public class PhrasalVerbActivity extends AppCompatActivity {
         String verbTitle = getIntent().getStringExtra(EXTRA_VERB_TITLE);
         String verbMeaning = getIntent().getStringExtra(EXTRA_VERB_MEANING);
         String verbExample = getIntent().getStringExtra(EXTRA_VERB_EXAMPLE);
+        Boolean verbIsKnown = getIntent().getBooleanExtra(EXTRA_KNOWN, false);
 
         mTitle = (TextView) findViewById(R.id.verb);
         mTitle.setText(verbTitle);
@@ -55,11 +57,12 @@ public class PhrasalVerbActivity extends AppCompatActivity {
         mExample.setText(verbExample);
 
         mKnow = (CheckBox) findViewById(R.id.verb_known);
+        mKnow.setChecked(verbIsKnown);
         mKnow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setKnow(true);
+                setKnow(isChecked);
             }
         });
 

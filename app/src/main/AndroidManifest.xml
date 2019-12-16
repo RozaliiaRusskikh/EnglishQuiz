@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".ResultActivity"
             android:label="@string/result">
+        </activity><activity android:name=".ActivityWishes"
+            android:label="@string/wishes">
         </activity>
     </application>
 
