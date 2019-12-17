@@ -42,7 +42,7 @@ public class ResultActivity extends AppCompatActivity {
         mGiftButton.setOnClickListener(new View.OnClickListener() { // setting listeners
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultActivity.this, ActivityWishes.class);
+                Intent intent = new Intent(ResultActivity.this, WishesActivity.class);
                 intent.putExtra("result", mPercentResult);
                 startActivity(intent);
             }

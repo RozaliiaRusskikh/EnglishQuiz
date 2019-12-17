@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mLearnButton = findViewById(R.id.learn_btn);
-        mLearnButton.setOnClickListener(new View.OnClickListener() { // setting listeners
+        mLearnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentLearn = new Intent(MainActivity.this, VerbsListActivity.class);

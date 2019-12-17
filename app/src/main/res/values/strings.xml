@@ -14,10 +14,10 @@
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
     <string name="next_button">Next</string>
-    <string name="warning_text">Are you sure you want to do this?</string>
+    <string name="warning_text">Are you sure you want to do this?\nThe answer will not be counted!</string>
     <string name="show_answer_button">Show answer</string>
     <string name="cheat_button">Cheat</string>
-    <string name="juidgment_toast">Cheating is wrong!</string>
+    <string name="juidgment_toast">The answer is known!</string>
     <string name="cheat_left_times">The number of remaining cheat tokens is %d!</string>
     <string name="learn_btn">Learn the most useful phrasal verbs</string>
     <string name="train_btn">Play and train</string>
@@ -28,9 +28,11 @@
     <string name="example">Example:</string>
     <string name="wishes">Wish</string>
     <string name="about_app_text">This app is dedicated to one of the most difficult topic in the English language - phrasal verbs.
-                                  \nWe have included common phrasal verbs. You can read and learn them.\nAfter you have studied the verbs you are able to check your knowledge.
+                                  \nWe have included common phrasal verbs. You can read and learn them.\n
                                   The app has True/False questions. You can answer questions and get feedback if you answered correctly or not.
-                                  You also have an interesting option to cheat to find the answer.\nEnjoy :)
+                                  You also have an interesting option to cheat to find the answer.
+                                  \nAfter you have studied the verbs you can get a gift. The gift is a funny wish.
+                                  \nEnjoy :)
     </string>
     <string name="wishes_for_10_percent">We wish you more correct answers next time. Chin up!</string>
     <string name="wishes_for_20_percent">We wish you not to suffer from bumps and bruises during the study.</string>
@@ -39,4 +41,5 @@
     <string name="wishes_for_80_percent">We wish you to always use different phrasal verbs.</string>
     <string name="wishes_for_100_percent">Well done!!! Your knowledge of English phrasal verbs is very good. You can share your knowledge.</string>
     <string name="wishes_for_winner">Huzzah!!! Bravo!!! We wish you to always know the meaning of your training</string>
+    <string name="wishes_for_0_percent">Do not panic! Try again! You will definitely succeed next time!</string>
 </resources>

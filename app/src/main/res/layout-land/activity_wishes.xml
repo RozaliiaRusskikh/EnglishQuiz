@@ -8,13 +8,24 @@
     <include
         layout="@layout/toolbar" />
 
+    <Button
+        android:id="@+id/menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:padding="10dp"
+        android:background="@color/colorAccent"/>
+
     <ImageView
         android:id="@+id/wish_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/menu_button"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="70dp"/>
 
     <TextView
@@ -27,15 +38,4 @@
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/menu_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/menu"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:padding="10dp"
-        android:background="@drawable/round_button"/>
 </RelativeLayout>

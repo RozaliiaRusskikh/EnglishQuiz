@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class ActivityWishes extends AppCompatActivity {
+public class WishesActivity extends AppCompatActivity {
 
     private ImageView mWishImageView;
     private TextView mWishTextView;
@@ -34,7 +34,11 @@ public class ActivityWishes extends AppCompatActivity {
         mWishImageView = (ImageView) findViewById(R.id.wish_image);
         mWishTextView = (TextView) findViewById(R.id.wish_text);
 
-        if (mPercentResultDouble >= 0 && mPercentResultDouble <= 10) {
+        if (mPercentResultDouble == 0) {
+            mWishImageView.setImageResource(R.drawable.img_wishes_for_0_percent);
+            mWishTextView.setText(R.string.wishes_for_0_percent);
+
+        } else if (mPercentResultDouble > 0 && mPercentResultDouble <= 10) {
             mWishImageView.setImageResource(R.drawable.img_wishes_for_10_percent);
             mWishTextView.setText(R.string.wishes_for_10_percent);
 
@@ -67,9 +71,15 @@ public class ActivityWishes extends AppCompatActivity {
         mMenuButton.setOnClickListener(new View.OnClickListener() { // setting listeners
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityWishes.this, MainActivity.class);
+                Intent intent = new Intent(WishesActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

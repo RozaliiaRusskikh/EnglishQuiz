@@ -240,7 +240,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         Toast toast = Toast.makeText(this, messageResult, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 350);
+        toast.setGravity(Gravity.CENTER, 0, 300);
         View view = toast.getView();
         view.setBackgroundResource(R.drawable.custom_toast);
         toast.show();//making toast
