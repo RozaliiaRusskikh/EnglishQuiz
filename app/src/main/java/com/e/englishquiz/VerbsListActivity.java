@@ -42,11 +42,6 @@ public class VerbsListActivity extends AppCompatActivity {
 
         questionsRepository = new QuestionsRepository(this);
 
-        try {
-            questionsRepository.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
 
         try {
             mDb = questionsRepository.getWritableDatabase();
@@ -116,7 +111,7 @@ public class VerbsListActivity extends AppCompatActivity {
                     "verbs",
                     values,
                     "_id=?",
-                    new String[] { Integer.toString(mSelectedVerb.getId()) });
+                    new String[]{Integer.toString(mSelectedVerb.getId())});
         }
     }
 

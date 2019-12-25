@@ -39,7 +39,6 @@ public class QuizActivity extends AppCompatActivity {
 
     // for database
     private QuestionsRepository repository; //instance of QuestionsRepository
-    private SQLiteDatabase mDb;
     private ArrayList<Question> mQuestions;
 
     private int mCurrentIndex = 0;
@@ -58,38 +57,7 @@ public class QuizActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         repository = new QuestionsRepository(this);
-        try {
-            repository.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        try {
-            mDb = repository.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
-
-
-        mQuestions = new ArrayList<Question>();
-
-
-        Cursor cursor = mDb.rawQuery("SELECT * FROM questions", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(cursor.getColumnIndex("_id"));
-                String questionText = cursor.getString(cursor.getColumnIndex("questionText"));
-                Boolean answer = (cursor.getInt(cursor.getColumnIndex("answer")) > 0);
-
-                Question question = new Question(id, questionText, answer);
-
-                mQuestions.add(question);
-
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
+        mQuestions = repository.getAllQuestions();
 
         if (savedInstanceState != null) { // reading saving data in SaveInstantState back
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0); // saving data
