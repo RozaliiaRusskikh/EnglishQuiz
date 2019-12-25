@@ -1,4 +1,4 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Models;
 
 public class Question {
     /*The Question class holds two pieces of data:

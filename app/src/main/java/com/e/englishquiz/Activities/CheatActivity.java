@@ -1,4 +1,4 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.e.englishquiz.R;
 
 public class CheatActivity extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Repositories;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,10 +10,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 
-public class QuestionsRepository extends SQLiteOpenHelper {
+public abstract class RepositoryBase extends SQLiteOpenHelper {
     private static String DB_NAME = "EnglishQuiz.db";
     private static String DB_PATH = "";
     private static final int DB_VERSION = 1;
@@ -23,7 +21,7 @@ public class QuestionsRepository extends SQLiteOpenHelper {
     private final Context mContext;
     private boolean mNeedUpdate = false;
 
-    public QuestionsRepository(Context context) {
+    public RepositoryBase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         if (android.os.Build.VERSION.SDK_INT >= 17)
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
@@ -99,27 +97,4 @@ public class QuestionsRepository extends SQLiteOpenHelper {
             mNeedUpdate = true;
     }
 
-    public ArrayList<Question> getAllQuestions() {
-        SQLiteDatabase db = getWritableDatabase();
-
-        ArrayList<Question> questions = new ArrayList<>();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM questions", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(cursor.getColumnIndex("_id"));
-                String questionText = cursor.getString(cursor.getColumnIndex("questionText"));
-                Boolean answer = (cursor.getInt(cursor.getColumnIndex("answer")) > 0);
-
-                Question question = new Question(id, questionText, answer);
-
-                questions.add(question);
-
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        return questions;
-    }
 }

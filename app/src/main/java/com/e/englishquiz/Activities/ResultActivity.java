@@ -1,4 +1,4 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.e.englishquiz.R;
 
 public class ResultActivity extends AppCompatActivity {
 

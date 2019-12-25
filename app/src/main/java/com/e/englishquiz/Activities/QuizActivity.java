@@ -1,13 +1,10 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -16,7 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
+import com.e.englishquiz.Models.Question;
+import com.e.englishquiz.R;
+import com.e.englishquiz.Repositories.QuestionsRepository;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 

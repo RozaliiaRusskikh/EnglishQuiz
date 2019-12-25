@@ -2,6 +2,9 @@ package com.e.englishquiz;
 
 import android.content.Context;
 
+import com.e.englishquiz.Adapters.ItemAdapter;
+import com.e.englishquiz.Models.PhrasalVerb;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

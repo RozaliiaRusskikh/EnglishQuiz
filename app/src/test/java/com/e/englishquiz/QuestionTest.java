@@ -1,5 +1,7 @@
 package com.e.englishquiz;
 
+import com.e.englishquiz.Models.Question;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

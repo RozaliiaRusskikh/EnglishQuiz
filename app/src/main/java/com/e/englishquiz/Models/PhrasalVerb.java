@@ -1,8 +1,6 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Models;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class PhrasalVerb extends AppCompatActivity {
+public class PhrasalVerb {
 
     private int mId;
     private String mVerb;

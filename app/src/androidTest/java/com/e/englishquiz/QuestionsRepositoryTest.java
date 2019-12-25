@@ -4,6 +4,9 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.e.englishquiz.Models.Question;
+import com.e.englishquiz.Repositories.QuestionsRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 

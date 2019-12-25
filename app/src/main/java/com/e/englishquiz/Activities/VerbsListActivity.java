@@ -1,4 +1,4 @@
-package com.e.englishquiz;
+package com.e.englishquiz.Activities;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -14,7 +14,12 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.io.IOException;
+import com.e.englishquiz.Adapters.ItemAdapter;
+import com.e.englishquiz.Models.PhrasalVerb;
+import com.e.englishquiz.R;
+import com.e.englishquiz.Repositories.PhrasalVerbRepository;
+import com.e.englishquiz.Repositories.QuestionsRepository;
+
 import java.util.ArrayList;
 
 
@@ -22,7 +27,7 @@ public class VerbsListActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_KNOWN = 0;
 
-    private QuestionsRepository questionsRepository;
+    private PhrasalVerbRepository verbRepository;
     private SQLiteDatabase mDb;
 
     private ArrayList<PhrasalVerb> mVerbs;
@@ -40,17 +45,9 @@ public class VerbsListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        questionsRepository = new QuestionsRepository(this);
+        verbRepository = new PhrasalVerbRepository(this);
 
-
-        try {
-            mDb = questionsRepository.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
-
-
-        mVerbs = new ArrayList<PhrasalVerb>();
+        mVerbs = verbRepository.getAllVerbs();
 
         Cursor cursor = mDb.rawQuery("SELECT * FROM verbs ORDER BY title", null);
 
