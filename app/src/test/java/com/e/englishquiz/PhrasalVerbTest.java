@@ -33,6 +33,59 @@ public class PhrasalVerbTest {
         // Assert
         assertEquals("verb2", verbsName);
     }
+
+    @Test
+    public void getMeaning_returns_meaning() {
+
+        // Arrange
+        PhrasalVerb verb = new PhrasalVerb(3, "verb3", "meaning3", "example3", false);
+
+        // Act
+        String verbMeaning = verb.getMeaning();
+
+        // Assert
+        assertEquals("meaning3", verbMeaning);
+    }
+
+    @Test
+    public void getExample_returns_example() {
+
+        // Arrange
+        PhrasalVerb verb = new PhrasalVerb(4, "verb4", "meaning4", "example4", false);
+
+        // Act
+        String verbExample = verb.getExample();
+
+        // Assert
+        assertEquals("example4", verbExample);
+    }
+
+    @Test
+    public void getIsKnown_returns_isKnown() {
+
+        // Arrange
+        PhrasalVerb verb = new PhrasalVerb(5, "verb5", "meaning5", "example5", false);
+
+        // Act
+        Boolean verbIsKnown = verb.isKnown();
+
+        // Assert
+        assertEquals(false, verbIsKnown);
+    }
+
+    @Test
+    public void setIsKnown_sets_isKnown() {
+
+        // Arrange
+        PhrasalVerb verb = new PhrasalVerb(5, "verb5", "meaning5", "example5", false);
+
+        // Act
+        verb.setKnown(true);
+        Boolean verbIsKnown = verb.isKnown();
+
+        // Assert
+        assertTrue(verbIsKnown);
+    }
 }
 
 

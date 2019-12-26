@@ -12,11 +12,13 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static junit.framework.Assert.assertNotSame;
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class PhrasalVerbRepositoryTest {
 
-   private PhrasalVerbRepository repository;
+    private PhrasalVerbRepository repository;
 
     @Before
     public void setUp() {
@@ -28,5 +30,22 @@ public class PhrasalVerbRepositoryTest {
     public void it_is_possible_to_get_data_from_db() {
         ArrayList<PhrasalVerb> verbs = repository.getAllVerbs();
         assertTrue(verbs.size() > 0);
+    }
+
+    @Test
+    public void it_is_possible_to_update_isKnown_parameter_from_db() {
+        // Arrange
+        ArrayList<PhrasalVerb> verbs = repository.getAllVerbs();
+        PhrasalVerb verb = verbs.get(0);
+        verb.setKnown(true);
+        Boolean expected = verb.isKnown();
+
+        // Act
+        repository.updateIsKnownParameter(expected, verb);
+
+        // Assert
+        ArrayList<PhrasalVerb> verbs2 = repository.getAllVerbs();
+        Boolean result = verbs2.get(0).isKnown();
+        assertEquals(expected, result);
     }
 }

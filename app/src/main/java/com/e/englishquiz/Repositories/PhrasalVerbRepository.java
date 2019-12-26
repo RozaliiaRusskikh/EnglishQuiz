@@ -1,5 +1,6 @@
 package com.e.englishquiz.Repositories;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,13 +11,13 @@ import java.util.ArrayList;
 
 public class PhrasalVerbRepository extends RepositoryBase {
 
+    SQLiteDatabase db = getWritableDatabase();
+
     public PhrasalVerbRepository(Context context) {
         super(context);
     }
 
     public ArrayList<PhrasalVerb> getAllVerbs() {
-
-        SQLiteDatabase db = getWritableDatabase();
 
         ArrayList<PhrasalVerb> verbs = new ArrayList<>();
 
@@ -39,5 +40,16 @@ public class PhrasalVerbRepository extends RepositoryBase {
 
         cursor.close();
         return verbs;
+    }
+
+    public void updateIsKnownParameter(Boolean isKnown, PhrasalVerb selectedVerb) {
+        ContentValues values = new ContentValues();
+        values.put("isKnown", isKnown ? 1 : 0);
+
+        db.update(
+                "verbs",
+                values,
+                "_id=?",
+                new String[]{Integer.toString(selectedVerb.getId())});
     }
 }

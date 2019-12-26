@@ -3,9 +3,6 @@ package com.e.englishquiz.Activities;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +15,6 @@ import com.e.englishquiz.Adapters.ItemAdapter;
 import com.e.englishquiz.Models.PhrasalVerb;
 import com.e.englishquiz.R;
 import com.e.englishquiz.Repositories.PhrasalVerbRepository;
-import com.e.englishquiz.Repositories.QuestionsRepository;
 
 import java.util.ArrayList;
 
@@ -28,7 +24,6 @@ public class VerbsListActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_KNOWN = 0;
 
     private PhrasalVerbRepository verbRepository;
-    private SQLiteDatabase mDb;
 
     private ArrayList<PhrasalVerb> mVerbs;
     private PhrasalVerb mSelectedVerb;
@@ -48,25 +43,6 @@ public class VerbsListActivity extends AppCompatActivity {
         verbRepository = new PhrasalVerbRepository(this);
 
         mVerbs = verbRepository.getAllVerbs();
-
-        Cursor cursor = mDb.rawQuery("SELECT * FROM verbs ORDER BY title", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(cursor.getColumnIndex("_id"));
-                String title = cursor.getString(cursor.getColumnIndex("title"));
-                String description = cursor.getString(cursor.getColumnIndex("description"));
-                String example = cursor.getString(cursor.getColumnIndex("example"));
-                Boolean known = (cursor.getInt(cursor.getColumnIndex("isKnown")) > 0);
-
-                PhrasalVerb verb = new PhrasalVerb(id, title, description, example, known);
-
-                mVerbs.add(verb);
-
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
 
         mAdapter = new ItemAdapter(mVerbs, this);
 
@@ -101,14 +77,7 @@ public class VerbsListActivity extends AppCompatActivity {
             mSelectedVerb.setKnown(isKnown);
             mAdapter.notifyDataSetChanged();
 
-            ContentValues values = new ContentValues();
-            values.put("isKnown", isKnown ? 1 : 0);
-
-            mDb.update(
-                    "verbs",
-                    values,
-                    "_id=?",
-                    new String[]{Integer.toString(mSelectedVerb.getId())});
+            verbRepository.updateIsKnownParameter(isKnown, mSelectedVerb);
         }
     }
 
