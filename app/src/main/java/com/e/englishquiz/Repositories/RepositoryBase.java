@@ -23,7 +23,7 @@ public abstract class RepositoryBase extends SQLiteOpenHelper {
 
     public RepositoryBase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        if (android.os.Build.VERSION.SDK_INT >= 17)
+        if (android.os.Build.VERSION.SDK_INT >= 19)
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
         else
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
@@ -72,11 +72,6 @@ public abstract class RepositoryBase extends SQLiteOpenHelper {
         mOutput.flush();
         mOutput.close();
         mInput.close();
-    }
-
-    public boolean openDataBase() throws SQLException {
-        mDataBase = SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-        return mDataBase != null;
     }
 
     @Override

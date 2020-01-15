@@ -210,7 +210,11 @@ public class QuizActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, messageResult, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 300);
         View view = toast.getView();
-        view.setBackgroundResource(R.drawable.custom_toast);
+        if (userPressedTrue == answerTrue) {
+            view.setBackgroundResource(R.drawable.custom_toast_correct);
+        } else {
+            view.setBackgroundResource(R.drawable.custom_toast_incorrect);
+        }
         toast.show();//making toast
 
         int questionsAmount = mQuestions.size();

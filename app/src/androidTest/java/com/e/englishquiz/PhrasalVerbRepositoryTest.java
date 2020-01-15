@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.assertNotSame;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
