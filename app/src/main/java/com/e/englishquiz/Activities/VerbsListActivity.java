@@ -1,7 +1,6 @@
 package com.e.englishquiz.Activities;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +54,7 @@ public class VerbsListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 mSelectedVerb = (PhrasalVerb) parent.getItemAtPosition(position);
-                Intent intent = PhrasalVerbActivity.newIntent(VerbsListActivity.this, mSelectedVerb.getVerb(), mSelectedVerb.getMeaning(), mSelectedVerb.getExample(), mSelectedVerb.isKnown());
+                Intent intent = PhrasalVerbActivity.newIntent(VerbsListActivity.this, mSelectedVerb.getId(), mSelectedVerb.getVerb(), mSelectedVerb.getMeaning(), mSelectedVerb.getExample(), mSelectedVerb.isKnown());
                 startActivityForResult(intent, REQUEST_CODE_KNOWN); // Getting a result back from a child activity
             }
         });

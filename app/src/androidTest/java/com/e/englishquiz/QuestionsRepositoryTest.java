@@ -24,12 +24,6 @@ public class QuestionsRepositoryTest {
         repository = new QuestionsRepository(appContext);
     }
 
-    @Test
-    public void it_is_possible_to_open_db() {
-
-        Boolean isOpenDb = repository.openDataBase();
-        assertTrue(isOpenDb);
-    }
 
     @Test
     public void it_is_possible_to_close_db() {

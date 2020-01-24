@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class PhrasalVerbRepository extends RepositoryBase {
 
     SQLiteDatabase db = getWritableDatabase();
+    ArrayList<PhrasalVerb> verbs;
 
     public PhrasalVerbRepository(Context context) {
         super(context);
@@ -19,7 +20,7 @@ public class PhrasalVerbRepository extends RepositoryBase {
 
     public ArrayList<PhrasalVerb> getAllVerbs() {
 
-        ArrayList<PhrasalVerb> verbs = new ArrayList<>();
+        verbs = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM verbs ORDER BY title", null);
 

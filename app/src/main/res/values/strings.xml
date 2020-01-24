@@ -42,4 +42,6 @@
     <string name="wishes_for_100_percent">Well done!!! Your knowledge of English phrasal verbs is very good. You can share your knowledge.</string>
     <string name="wishes_for_winner">Huzzah!!! Bravo!!! We wish you to always know the meaning of your training</string>
     <string name="wishes_for_0_percent">Do not panic! Try again! You will definitely succeed next time!</string>
+    <string name="next_verb">Next verb</string>
+    <string name="previous_verb">Previous verb</string>
 </resources>
