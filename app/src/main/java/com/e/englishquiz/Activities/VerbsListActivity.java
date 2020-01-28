@@ -22,8 +22,6 @@ public class VerbsListActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_KNOWN = 0;
 
-    private PhrasalVerbRepository verbRepository;
-
     private ArrayList<PhrasalVerb> mVerbs;
     private PhrasalVerb mSelectedVerb;
     private ItemAdapter mAdapter;
@@ -34,18 +32,16 @@ public class VerbsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verbs_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        verbRepository = new PhrasalVerbRepository(this);
-
-        mVerbs = verbRepository.getAllVerbs();
+        mVerbs = new PhrasalVerbRepository(this).getAllVerbs();
 
         mAdapter = new ItemAdapter(mVerbs, this);
 
-        ListView listView = (ListView) findViewById(R.id.list_view);
+        ListView listView = findViewById(R.id.list_view);
         listView.setAdapter(mAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { // getting the list and the detail parts working together. When a
@@ -64,19 +60,13 @@ public class VerbsListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
         if (requestCode == REQUEST_CODE_KNOWN) {
-            if (data == null) {
-                return;
-            }
 
-            boolean isKnown = PhrasalVerbActivity.wasKnown(data);
-            mSelectedVerb.setKnown(isKnown);
+            ArrayList<PhrasalVerb> newVerbs = new PhrasalVerbRepository(this).getAllVerbs();
+            mVerbs.clear();
+            mVerbs.addAll(newVerbs);
+
             mAdapter.notifyDataSetChanged();
-
-            verbRepository.updateIsKnownParameter(isKnown, mSelectedVerb);
         }
     }
 

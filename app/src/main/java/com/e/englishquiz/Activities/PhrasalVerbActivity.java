@@ -1,12 +1,10 @@
 package com.e.englishquiz.Activities;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,7 +26,8 @@ public class PhrasalVerbActivity extends AppCompatActivity {
     private CheckBox mKnow;
     private ArrayList<PhrasalVerb> mVerbs;
     private int mVerbId;
-    int currentIndex;
+    int mCurrentIndex;
+    PhrasalVerbRepository mVerbRepository;
 
 
     private static final String EXTRA_VERB_TITLE = "com.e.englishquiz.verb_title"; // constant for the extra's key
@@ -47,10 +46,6 @@ public class PhrasalVerbActivity extends AppCompatActivity {
         return intent;
     }
 
-    public static boolean wasKnown(Intent result) { // Decoding the result intent
-        return result.getBooleanExtra(EXTRA_KNOWN, false);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,81 +57,78 @@ public class PhrasalVerbActivity extends AppCompatActivity {
         Boolean verbIsKnown = getIntent().getBooleanExtra(EXTRA_KNOWN, false);
         mVerbId = getIntent().getIntExtra(EXTRA_ID, 0);
 
-        PhrasalVerbRepository verbRepository = new PhrasalVerbRepository(this);
-        mVerbs = verbRepository.getAllVerbs();
-        currentIndex = getCurrentIndex();
+        mVerbRepository = new PhrasalVerbRepository(this);
+        mVerbs = mVerbRepository.getAllVerbs();
 
-        mTitle = (TextView) findViewById(R.id.verb);
+        mCurrentIndex = getCurrentIndex();
+
+        mTitle = findViewById(R.id.verb);
         mTitle.setText(verbTitle);
 
-        mMeaning = (TextView) findViewById(R.id.meaning);
+        mMeaning = findViewById(R.id.meaning);
         mMeaning.setText(verbMeaning);
 
-        mExample = (TextView) findViewById(R.id.example);
+        mExample = findViewById(R.id.example);
         mExample.setText(verbExample);
 
-        mKnow = (CheckBox) findViewById(R.id.verb_known);
+        mKnow = findViewById(R.id.verb_known);
         mKnow.setChecked(verbIsKnown);
-        mKnow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+        mKnow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setKnow(isChecked);
+            public void onClick(View v) {
+
+                boolean checked = ((CheckBox)v).isChecked();
+
+                PhrasalVerb verb = findSelectedVerb();
+                verb.setKnown(checked);
+
+                mVerbRepository.updateIsKnownParameter(checked, verb);
             }
         });
 
-        ImageButton mPreviousButton = (ImageButton) findViewById(R.id.previous_button);
+        ImageButton mPreviousButton = findViewById(R.id.previous_button);
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int previousIndex = currentIndex - 1;
+                int previousIndex = mCurrentIndex - 1;
                 if (previousIndex >= 0) {
                     updateVerb(previousIndex);
-                    currentIndex = previousIndex;
+                    mCurrentIndex = previousIndex;
                 }
 
                 if (previousIndex < 0) {
                     previousIndex += mVerbs.size();
                     updateVerb(previousIndex);
-                    currentIndex = previousIndex;
+                    mCurrentIndex = previousIndex;
                 }
             }
         });
 
-        ImageButton mNextButton = (ImageButton) findViewById(R.id.next_button);
+        ImageButton mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int nextIndex = currentIndex + 1;
+                int nextIndex = mCurrentIndex + 1;
                 if (nextIndex < mVerbs.size()) {
                     updateVerb(nextIndex);
-                    currentIndex = nextIndex;
+                    mCurrentIndex = nextIndex;
                 }
                 if (nextIndex == mVerbs.size()) {
                     nextIndex -= mVerbs.size();
                     updateVerb(nextIndex);
-                    currentIndex = nextIndex;
+                    mCurrentIndex = nextIndex;
                 }
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_actionbar);
 
         setSupportActionBar(toolbar);
-
         getSupportActionBar().
-
-                setDisplayHomeAsUpEnabled(true);
-
+        setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().
-
-                setDisplayShowHomeEnabled(true);
-    }
-
-    private void setKnow(boolean isKnown) {
-        Intent data = new Intent();
-        data.putExtra(EXTRA_KNOWN, isKnown);
-        setResult(RESULT_OK, data);
+        setDisplayShowHomeEnabled(true);
     }
 
     private PhrasalVerb findSelectedVerb() {
@@ -153,19 +145,16 @@ public class PhrasalVerbActivity extends AppCompatActivity {
         int currentIndex = mVerbs.indexOf(selectedVerb);
         return currentIndex;
     }
-
-
     private void updateVerb(int index) {
-        String title = mVerbs.get(index).getVerb();
-        mTitle.setText(title);
-        String meaning = mVerbs.get(index).getMeaning();
-        mMeaning.setText(meaning);
-        String example = mVerbs.get(index).getExample();
-        mExample.setText(example);
-        Boolean known = mVerbs.get(index).isKnown();
-        mKnow.setChecked(known);
-    }
+        PhrasalVerb verb = mVerbs.get(index);
 
+        mVerbId = verb.getId();
+
+        mTitle.setText(verb.getVerb());
+        mMeaning.setText(verb.getMeaning());
+        mExample.setText(verb.getExample());
+        mKnow.setChecked(verb.isKnown());
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -173,4 +162,3 @@ public class PhrasalVerbActivity extends AppCompatActivity {
         return true;
     }
 }
-
